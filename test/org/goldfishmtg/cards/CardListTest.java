@@ -15,7 +15,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void addCards1() {
+	public void testAddCards1() {
 		for (int i = 0; i < 10; i++) {
 			String cardName = "" + i;
 			test.addCards(cardName, i);
@@ -24,7 +24,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void addCards2() {
+	public void testAddCards2() {
 		for (int i = 0; i < 10; i++) {
 			String cardName = "" + i;
 			test.addCards(cardName, i);
@@ -34,7 +34,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void removeCards1() {
+	public void testRemoveCards1() {
 		int added = 10;
 		String cardName = "A card";
 
@@ -45,7 +45,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void removeCards2() {
+	public void testRemoveCards2() {
 		int added = 10;
 		String cardName = "A card";
 
@@ -56,7 +56,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void removeCards3() {
+	public void testRemoveCards3() {
 		int added = 10;
 		String cardName = "A card";
 
@@ -77,7 +77,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void getCount1() {
+	public void testGetCount1() {
 		String cardName1 = "Card 1";
 		String cardName2 = "Card 2";
 
@@ -88,7 +88,7 @@ public class CardListTest {
 	}
 
 	@Test
-	public void getCount2() {
+	public void testGetCount2() {
 		String cardName1 = "Card 1";
 		String cardName2 = "Card 2";
 		String cardName3 = "Not a card";
