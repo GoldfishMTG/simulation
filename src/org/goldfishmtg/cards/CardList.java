@@ -1,11 +1,11 @@
 package org.goldfishmtg.cards;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.goldfishmtg.util.MutableInt;
 
@@ -23,11 +23,11 @@ public class CardList<T extends Comparable<T>> {
 	private final Map<T, MutableInt> cards;
 
 	public CardList() {
-		this.cards = new LinkedHashMap<T, MutableInt>();
+		this.cards = new TreeMap<T, MutableInt>();
 	}
 
 	public CardList(CardList<T> cardList) {
-		this.cards = new LinkedHashMap<T, MutableInt>();
+		this.cards = new TreeMap<T, MutableInt>();
 		Set<Entry<T, MutableInt>> es = cardList.cards.entrySet();
 		for (Entry<T, MutableInt> entry : es) {
 			T card = entry.getKey();
@@ -41,7 +41,7 @@ public class CardList<T extends Comparable<T>> {
 	 * Returns the number of the specified card contained in this card list
 	 */
 	public int getCount(T card) {
-		if (this.cards.containsKey(card)) {
+		if (card != null && this.cards.containsKey(card)) {
 			return this.cards.get(card).get();
 		}
 		return 0;
@@ -83,6 +83,8 @@ public class CardList<T extends Comparable<T>> {
 	 *
 	 * @param card
 	 *            the card to be added
+	 * @throws IllegalArgumentException
+	 *             if <code>card</code> is null
 	 */
 	public void addCard(T card) {
 		addCards(card, 1);
@@ -96,9 +98,13 @@ public class CardList<T extends Comparable<T>> {
 	 * @param amount
 	 *            The amount of cards to be added
 	 * @throws IllegalArgumentException
-	 *             if <code>amount</code> is negative
+	 *             if <code>amount</code> is negative, or <code>card</code> is
+	 *             null
 	 */
 	public void addCards(T card, int amount) {
+		if (card == null) {
+			throw new IllegalArgumentException("card cannot be null");
+		}
 		if (amount > 0) {
 			if (!this.cards.containsKey(card)) {
 				this.cards.put(card, new MutableInt(amount));
@@ -123,6 +129,8 @@ public class CardList<T extends Comparable<T>> {
 	 *            The amount of cards to be added to this card list
 	 * @return <code>true</code> if this card list changed as a result of this
 	 *         call
+	 * @throws IllegalArgumentException
+	 *             if <code>card</code> is null
 	 */
 	public boolean removeCard(T card) {
 		return removeCards(card, 1);
@@ -142,9 +150,13 @@ public class CardList<T extends Comparable<T>> {
 	 * @return <code>true</code> if this card list changed as a result of this
 	 *         call
 	 * @throws IllegalArgumentException
-	 *             if <code>amount</code> is negative
+	 *             if <code>amount</code> is negative, or <code>card</code> is
+	 *             null
 	 */
 	public boolean removeCards(T card, int amount) {
+		if (card == null) {
+			throw new IllegalArgumentException("card cannot be null");
+		}
 		if (amount > 0 && getCount(card) >= amount) {
 			this.cards.get(card).add(-amount);
 			return true;
