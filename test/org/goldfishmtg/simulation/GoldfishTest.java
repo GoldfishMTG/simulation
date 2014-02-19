@@ -4,8 +4,6 @@ import junit.framework.Assert;
 
 import org.goldfishmtg.cards.CardList;
 import org.goldfishmtg.cards.Library;
-import org.goldfishmtg.simulation.Agent;
-import org.goldfishmtg.simulation.Goldfish;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

@@ -11,9 +11,9 @@ import org.goldfishmtg.util.MutableInt;
 
 /**
  * A general purpose list of cards
- * 
+ *
  * @author skaspersen
- * 
+ *
  * @param <T>
  *            the type use to represent cards, must implement the
  *            {@link Comparable} interface
@@ -52,7 +52,7 @@ public class CardList<T extends Comparable<T>> {
      * list. For example if {@link #addCards(Comparable, int) addCards(a, 1)},
      * and {@link #addCards(Comparable, int) addCards(b, 2)} have been called on
      * this list of cards, {@link #getCount(a,b)} would return <code>3</code>.
-     * 
+     *
      * @param cards
      *            the cards to count
      * @return the combined total of the specified cards contained in this card
@@ -80,7 +80,7 @@ public class CardList<T extends Comparable<T>> {
 
     /**
      * Ensures that 1 of the specified card is added to this card list
-     * 
+     *
      * @param card
      *            the card to be added
      * @throws IllegalArgumentException
@@ -92,7 +92,7 @@ public class CardList<T extends Comparable<T>> {
 
     /**
      * Ensures that the specified amount of cards are added to this card list
-     * 
+     *
      * @param card
      *            the card to be added
      * @param amount
@@ -121,8 +121,8 @@ public class CardList<T extends Comparable<T>> {
      * Returns <code>true</code> if more than one of the specified card was in
      * this card list (or equivalently, if this card list changed as a result of
      * the call).
-     * 
-     * 
+     *
+     *
      * @param card
      *            the card to be removed from this card list
      * @param amount
@@ -141,8 +141,8 @@ public class CardList<T extends Comparable<T>> {
      * list. Returns <code>true</code> if an amount greater than or equal to the
      * specified amount of cards was present in this card list (or equivalently,
      * if this card list changed as a result of the call).
-     * 
-     * 
+     *
+     *
      * @param card
      *            the card to be removed from this card list
      * @param amount

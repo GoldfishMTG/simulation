@@ -14,20 +14,43 @@ import org.goldfishmtg.cards.Library;
  * As an observer it can perform inspections on the library, hand, and keep its
  * own internal game state to keep track of data points for analysis as each
  * turn is played
- * 
+ *
  * @author skaspersen
- * 
+ *
  * @param <T>
  *            the type use to represent cards, must implement the
  *            {@link Comparable} interface
- * 
+ *
  * @see Goldfish
  */
 public interface Agent<T extends Comparable<T>> {
+
+    /**
+     * A new simulation has done. This is an indication that all data points and
+     * internal game state should be discarded
+     */
+    void simulationStarted();
+
+    /**
+     * All games in the current simulation have been completed
+     */
+    void simulationDone();
+
+    /**
+     * A new game has started
+     */
+    void newGame();
+
+    /**
+     * The current game has ended either due to the agent declining a turn, or
+     * the library running out of cards
+     */
+    void gameDone();
+
     /**
      * Returns <code>true</code> if the specified hand should be kept,
      * <code>false</code> if a mulligan should be taken instead
-     * 
+     *
      * @param cardCount
      *            the number of cards drawn
      * @param hand
@@ -44,7 +67,7 @@ public interface Agent<T extends Comparable<T>> {
     /**
      * Simulates the specified turn. The hand already contains the card drawn
      * from the specified library for that turn.
-     * 
+     *
      * @param turn
      *            the number of the turn being played, the first turn is 1
      * @param library
@@ -58,13 +81,8 @@ public interface Agent<T extends Comparable<T>> {
     void takeTurn(int turn, Library<T> library, CardList<T> hand);
 
     /**
-     * A new game has started
+     * Returns a human readable report of what the agent has observed in all
+     * games
      */
-    void newGame();
-
-    /**
-     * The current game has ended either due to the agent declining a turn, or
-     * the library running out of cards
-     */
-    void gameDone();
+    String getReport();
 }

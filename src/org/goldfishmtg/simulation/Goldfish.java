@@ -13,15 +13,15 @@ import org.goldfishmtg.cards.Library;
  * drawing the first card for each turn.
  * <p>
  * The supplied agent acts as both an observer and controller for the simulation
- * 
+ *
  * @author skaspersen
- * 
+ *
  * @param <T>
  *            the type use to represent cards, must implement the
  *            {@link Comparable} interface
  * @param <A>
  *            the agent used to make game decisions
- * 
+ *
  * @see Agent
  */
 public class Goldfish<T extends Comparable<T>, A extends Agent<T>> implements
@@ -35,14 +35,14 @@ public class Goldfish<T extends Comparable<T>, A extends Agent<T>> implements
     /**
      * Creates a new simulation for the specified library and agent. By default
      * the agent will not skip the first draw step and will simulate 1 game
-     * 
+     *
      * @param library
      *            the library for the simulation, if using threads make sure
      *            that this library is not shared by another goldfish instance
      * @param agent
      *            the agent used to affect the game, if using threads make sure
      *            that this agent is not shared by another goldfish instance
-     * 
+     *
      * @see #setSkipFirstDrawStep(boolean)
      * @see #setGames(int)
      */
@@ -56,7 +56,7 @@ public class Goldfish<T extends Comparable<T>, A extends Agent<T>> implements
     /**
      * Changes whether the games are simulated on the draw or on the play. By
      * default this is set to false.
-     * 
+     *
      * @param skip
      *            <code>true</code> if the simulations are on the play and
      *            should skip the first draw step
@@ -74,6 +74,7 @@ public class Goldfish<T extends Comparable<T>, A extends Agent<T>> implements
 
     @Override
     public A call() throws Exception {
+        this.agent.simulationStarted();
         for (int i = 0; i < this.gameCount; i++) {
             this.agent.newGame();
             CardList<T> hand = drawOpeningHand();
@@ -90,6 +91,7 @@ public class Goldfish<T extends Comparable<T>, A extends Agent<T>> implements
             }
             this.agent.gameDone();
         }
+        this.agent.simulationDone();
         return this.agent;
 
     }

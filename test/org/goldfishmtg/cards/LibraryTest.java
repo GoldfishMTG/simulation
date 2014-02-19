@@ -14,14 +14,14 @@ public class LibraryTest {
 
     @Before
     public void before() {
-        cards = new CardList<String>();
+        this.cards = new CardList<String>();
     }
 
     @Test
     public void testDraw1() {
         int librarySize = 10;
-        cards.addCards("Card", librarySize);
-        Library<String> test = new Library<>(cards);
+        this.cards.addCards("Card", librarySize);
+        Library<String> test = new Library<>(this.cards);
 
         for (int i = librarySize - 1; i >= 0; i--) {
             Assert.assertEquals("Card", test.draw());
@@ -35,9 +35,9 @@ public class LibraryTest {
         int librarySize = 10;
         int typeACount = 7;
         int typeBCount = librarySize - typeACount;
-        cards.addCards("Type A", typeACount);
-        cards.addCards("Type B", typeBCount);
-        Library<String> test = new Library<>(cards);
+        this.cards.addCards("Type A", typeACount);
+        this.cards.addCards("Type B", typeBCount);
+        Library<String> test = new Library<>(this.cards);
 
         for (int i = librarySize - 1; i >= 0; i--) {
             String card = test.draw();
@@ -56,8 +56,8 @@ public class LibraryTest {
     @Test
     public void testReset1() {
         int librarySize = 10;
-        cards.addCards("Card", librarySize);
-        Library<String> test = new Library<>(cards);
+        this.cards.addCards("Card", librarySize);
+        Library<String> test = new Library<>(this.cards);
         test.draw();
 
         test.reset();
@@ -71,12 +71,12 @@ public class LibraryTest {
     @Test
     public void testReset2() {
         int librarySize = 100;
-        cards.addCards("Card", librarySize - 1);
-        cards.addCard("Top");
+        this.cards.addCards("Card", librarySize - 1);
+        this.cards.addCard("Top");
 
         int i;
         for (i = 0; i < Short.MAX_VALUE; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             test.top(test.tutor("Top"));
             test.reset();
             if (!test.draw().equals("Top")) {
@@ -93,12 +93,12 @@ public class LibraryTest {
     @Test
     public void testReset3() {
         int librarySize = 100;
-        cards.addCard("Bottom");
-        cards.addCards("Card", librarySize - 1);
+        this.cards.addCard("Bottom");
+        this.cards.addCards("Card", librarySize - 1);
 
         int i;
         for (i = 0; i < Short.MAX_VALUE; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             test.bottom(test.tutor("Bottom"));
             test.reset();
             for (int draw = 1; draw < librarySize; draw++) {
@@ -118,12 +118,12 @@ public class LibraryTest {
     @Test
     public void testShuffle1() {
         int librarySize = 1000;
-        cards.addCards("Card", librarySize - 1);
-        cards.addCard("Top");
+        this.cards.addCards("Card", librarySize - 1);
+        this.cards.addCard("Top");
 
         int i;
         for (i = 0; i < Short.MAX_VALUE; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             test.top(test.tutor("Top"));
             test.shuffle();
             if (!test.draw().equals("Top")) {
@@ -140,12 +140,12 @@ public class LibraryTest {
     @Test
     public void testShuffle2() {
         int librarySize = 100;
-        cards.addCard("Bottom");
-        cards.addCards("Card", librarySize - 1);
+        this.cards.addCard("Bottom");
+        this.cards.addCards("Card", librarySize - 1);
 
         int i;
         for (i = 0; i < Short.MAX_VALUE; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             test.bottom(test.tutor("Bottom"));
             test.shuffle();
             for (int draw = 1; draw < librarySize; draw++) {
@@ -165,12 +165,12 @@ public class LibraryTest {
     @Test
     public void testTutor1() {
         int librarySize = 60;
-        cards.addCards("Card", librarySize - 1);
-        cards.addCard("Target");
+        this.cards.addCards("Card", librarySize - 1);
+        this.cards.addCard("Target");
 
         // Loop just in case the target was drawn at random
         for (int i = 0; i < 10; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             Assert.assertEquals("Target", test.tutor("Target"));
             Assert.assertEquals(librarySize - 1, test.cardsRemaining());
             while (test.cardsRemaining() > 0) {
@@ -183,11 +183,11 @@ public class LibraryTest {
     public void testTutor2() {
         int librarySize = 60;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card " + i);
+            this.cards.addCard("Card " + i);
         }
 
         for (int i = 0; i < 10; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             String target = test.draw();
             test.top(target);
 
@@ -203,11 +203,11 @@ public class LibraryTest {
     public void testTutor3() {
         int librarySize = 60;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card " + i);
+            this.cards.addCard("Card " + i);
         }
 
         for (int i = 0; i < 10; i++) {
-            Library<String> test = new Library<>(cards);
+            Library<String> test = new Library<>(this.cards);
             String target = test.draw();
             test.bottom(target);
 
@@ -223,10 +223,10 @@ public class LibraryTest {
     public void testTopT1() {
         int librarySize = 15;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         while (test.cardsRemaining() > 0) {
             String card = test.draw();
             test.top(card);
@@ -237,9 +237,9 @@ public class LibraryTest {
     @Test(expected = IllegalArgumentException.class)
     public void testTopT2() {
         int librarySize = 15;
-        cards.addCards("Card", librarySize);
+        this.cards.addCards("Card", librarySize);
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         test.top("Not a card");
     }
 
@@ -247,10 +247,10 @@ public class LibraryTest {
     public void testTopTArray1() {
         int librarySize = 15;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         while (test.cardsRemaining() > 3) {
             String card1 = test.draw();
             String card2 = test.draw();
@@ -265,9 +265,9 @@ public class LibraryTest {
     @Test
     public void testTopTArray2() {
         int librarySize = 15;
-        cards.addCards("Card", librarySize);
+        this.cards.addCards("Card", librarySize);
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         while (test.cardsRemaining() > 3) {
             String card1 = test.draw();
             String card2 = test.draw();
@@ -282,9 +282,9 @@ public class LibraryTest {
     @Test(expected = IllegalArgumentException.class)
     public void testTopTArray3() {
         int librarySize = 15;
-        cards.addCards("Card", librarySize);
+        this.cards.addCards("Card", librarySize);
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         String card1 = test.draw();
         String card2 = test.draw();
         String card3 = test.draw();
@@ -302,9 +302,9 @@ public class LibraryTest {
     public void testBottomT1() {
         int librarySize = 5;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         List<String> expectedOrder = new ArrayList<>(librarySize);
         for (int i = 0; i < librarySize; i++) {
             String card = test.draw();
@@ -321,10 +321,10 @@ public class LibraryTest {
     public void testBottomT2() {
         int librarySize = 5;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
 
         test.bottom("Not a card");
     }
@@ -333,9 +333,9 @@ public class LibraryTest {
     public void testBottomTArray1() {
         int librarySize = 15;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         List<String> expectedOrder = new ArrayList<>(librarySize);
         for (int i = 0; i < librarySize; i += 3) {
             String card1 = test.draw();
@@ -358,10 +358,10 @@ public class LibraryTest {
     public void testBottomTArray2() {
         int librarySize = 5;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
 
         String card1 = test.draw();
         String card2 = test.draw();
@@ -379,10 +379,10 @@ public class LibraryTest {
     public void testCardsRemaining() {
         int librarySize = 15;
         for (int i = 0; i < librarySize; i++) {
-            cards.addCard("Card" + i);
+            this.cards.addCard("Card" + i);
         }
 
-        Library<String> test = new Library<>(cards);
+        Library<String> test = new Library<>(this.cards);
         for (int i = librarySize - 1; i > 0; i--) {
             test.draw();
             Assert.assertEquals(i, test.cardsRemaining());

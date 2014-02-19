@@ -8,9 +8,9 @@ import java.util.Random;
 /**
  * Acts as a library to draw cards from. Also provides mechanisms for tutoring
  * and placing cards on the top or bottom of the library
- * 
+ *
  * @author skaspersen
- * 
+ *
  * @param <T>
  *            the type use to represent cards, must implement the
  *            {@link Comparable} interface
@@ -27,7 +27,7 @@ public class Library<T extends Comparable<T>> {
     /**
      * Creates a new library initially containing all the cards in the specified
      * card list
-     * 
+     *
      * @param cards
      *            the initial list of cards
      */
@@ -38,9 +38,9 @@ public class Library<T extends Comparable<T>> {
     /**
      * Creates a new library initially containing all the cards in the specified
      * card list
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * @param rng
      *            the random number generator to use
      * @param cards
@@ -95,7 +95,7 @@ public class Library<T extends Comparable<T>> {
      * Draws a card from this library. Returns in order of preference the last
      * card to be placed on top, a card at random that has not been placed on
      * the bottom, or the first card that was placed on the bottom.
-     * 
+     *
      * @return the card on top of this library, <code>null</code> if there were
      *         no cards left
      */
@@ -120,7 +120,7 @@ public class Library<T extends Comparable<T>> {
     /**
      * Searches for the specified card in this library and shuffles it. Returns
      * the specified card if it was present in this library.
-     * 
+     *
      * @param card
      *            the card to tutor for
      * @return the specified card if it was present in this library, otherwise
@@ -139,7 +139,7 @@ public class Library<T extends Comparable<T>> {
     /**
      * Adds the specified card to the top of this library. The next card drawn
      * will be the specified card
-     * 
+     *
      * @param card
      *            the card to place on top of this library
      * @throws IllegalArgumentException
@@ -157,7 +157,7 @@ public class Library<T extends Comparable<T>> {
      * Adds the specified cards to the top of this library. The first card drawn
      * will be the first card specified, the second card drawn will be the
      * second card specified, and so on
-     * 
+     *
      * @param cards
      *            the cards to put on the top of this library, the first card
      *            specified will be the card on top of this library
@@ -180,7 +180,7 @@ public class Library<T extends Comparable<T>> {
     /**
      * Adds the specified card to the bottom of this library. The last card
      * drawn from this library will be the specified card
-     * 
+     *
      * @param card
      *            the card to place at the bottom of this library
      * @throws IllegalArgumentException
@@ -199,7 +199,7 @@ public class Library<T extends Comparable<T>> {
      * drawn from this library will be the last card specified, the second last
      * card drawn from this library will be the second last card specified, and
      * so on
-     * 
+     *
      * @param card
      *            the card to place at the bottom of this library
      * @throws IllegalArgumentException

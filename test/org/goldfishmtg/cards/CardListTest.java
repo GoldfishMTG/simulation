@@ -11,15 +11,15 @@ public class CardListTest {
 
     @Before
     public void before() {
-        test = new CardList<String>();
+        this.test = new CardList<String>();
     }
 
     @Test
     public void testAddCards1() {
         for (int i = 0; i < 10; i++) {
             String cardName = "" + i;
-            test.addCards(cardName, i);
-            Assert.assertEquals(i, test.getCount(cardName));
+            this.test.addCards(cardName, i);
+            Assert.assertEquals(i, this.test.getCount(cardName));
         }
     }
 
@@ -27,9 +27,9 @@ public class CardListTest {
     public void testAddCards2() {
         for (int i = 0; i < 10; i++) {
             String cardName = "" + i;
-            test.addCards(cardName, i);
-            test.addCards(cardName, i + 1);
-            Assert.assertEquals(i + i + 1, test.getCount(cardName));
+            this.test.addCards(cardName, i);
+            this.test.addCards(cardName, i + 1);
+            Assert.assertEquals(i + i + 1, this.test.getCount(cardName));
         }
     }
 
@@ -38,10 +38,10 @@ public class CardListTest {
         int added = 10;
         String cardName = "A card";
 
-        test.addCards(cardName, added);
+        this.test.addCards(cardName, added);
 
-        Assert.assertTrue(test.removeCards(cardName, added));
-        Assert.assertEquals(0, test.getCount(cardName));
+        Assert.assertTrue(this.test.removeCards(cardName, added));
+        Assert.assertEquals(0, this.test.getCount(cardName));
     }
 
     @Test
@@ -49,10 +49,10 @@ public class CardListTest {
         int added = 10;
         String cardName = "A card";
 
-        test.addCards(cardName, added);
+        this.test.addCards(cardName, added);
 
-        Assert.assertFalse(test.removeCards(cardName, added + 1));
-        Assert.assertEquals(added, test.getCount(cardName));
+        Assert.assertFalse(this.test.removeCards(cardName, added + 1));
+        Assert.assertEquals(added, this.test.getCount(cardName));
     }
 
     @Test
@@ -60,11 +60,11 @@ public class CardListTest {
         int added = 10;
         String cardName = "A card";
 
-        test.addCards(cardName, added);
+        this.test.addCards(cardName, added);
 
         for (int i = added - 1; i >= 0; i--) {
-            Assert.assertTrue(test.removeCards(cardName, 1));
-            Assert.assertEquals(i, test.getCount(cardName));
+            Assert.assertTrue(this.test.removeCards(cardName, 1));
+            Assert.assertEquals(i, this.test.getCount(cardName));
         }
     }
 
@@ -72,8 +72,8 @@ public class CardListTest {
     public void removeCards4() {
         String cardName = "Not A card";
 
-        Assert.assertFalse(test.removeCards(cardName, 1));
-        Assert.assertEquals(0, test.getCount(cardName));
+        Assert.assertFalse(this.test.removeCards(cardName, 1));
+        Assert.assertEquals(0, this.test.getCount(cardName));
     }
 
     @Test
@@ -81,10 +81,10 @@ public class CardListTest {
         String cardName1 = "Card 1";
         String cardName2 = "Card 2";
 
-        test.addCards(cardName1, 10);
-        test.addCards(cardName1, 15);
+        this.test.addCards(cardName1, 10);
+        this.test.addCards(cardName1, 15);
 
-        Assert.assertEquals(10 + 15, test.getCount(cardName1, cardName2));
+        Assert.assertEquals(10 + 15, this.test.getCount(cardName1, cardName2));
     }
 
     @Test
@@ -93,10 +93,10 @@ public class CardListTest {
         String cardName2 = "Card 2";
         String cardName3 = "Not a card";
 
-        test.addCards(cardName1, 10);
-        test.addCards(cardName1, 15);
+        this.test.addCards(cardName1, 10);
+        this.test.addCards(cardName1, 15);
 
         Assert.assertEquals(10 + 15,
-                test.getCount(cardName1, cardName2, cardName3, null));
+                this.test.getCount(cardName1, cardName2, cardName3, null));
     }
 }
